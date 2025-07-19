@@ -1,9 +1,9 @@
 "use client";
 
 import { useDrawPath } from "@/hooks/useDrawmap";
-import { useNaverMap } from "@/hooks/useNavermap";
 import { useGetGeocoder } from "@/hooks/useGetGeocoder";
-import { useEffect, useState } from "react";
+import { useNaverMap } from "@/hooks/useNavermap";
+import { useState } from "react";
 
 const defaultPosition = { latitude: 35.122769, longitude: 126.996822 };
 
@@ -15,11 +15,22 @@ export default function MapWithCurrentPositionMark() {
   const { mapId, map } = useNaverMap(defaultPosition);
   useDrawPath(map, path as [number, number][]);
 
-  const latlon = useGetGeocoder(map, setPath);
+  useGetGeocoder(map, setPath);
 
   return (
     <div>
-      <textarea className="w-72 h-full" value={JSON.stringify(path)} />
+      <div>
+        <textarea className="w-72 h-full" value={JSON.stringify(path)} />
+        <button
+          onClick={() => {
+            const newPath = [...path];
+            newPath.pop();
+            setPath(newPath);
+          }}
+        >
+          뒤로 가기
+        </button>
+      </div>
       <div id={mapId} className="h-screen w-screen" />;
     </div>
   );

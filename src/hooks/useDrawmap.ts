@@ -6,7 +6,7 @@ type LatLongPath = [number, number][];
 export const useDrawPath = (map: any, path: LatLongPath) => {
   useEffect(() => {
     (async () => {
-      const pathway = new naver.maps.Polyline({
+      const pathway = await new naver.maps.Polyline({
         map,
         path,
         strokeWeight: 5,
