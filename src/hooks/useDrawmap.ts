@@ -16,7 +16,6 @@ export const useDrawPath = (map: any, path: LatLongPath) => {
         strokeLineCap: "round",
         strokeLineJoin: "round",
       });
-      console.log(pathway);
     })();
   }, [map, path]);
 };

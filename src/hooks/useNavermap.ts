@@ -43,23 +43,13 @@ NaverMapProps) => {
     (lat: number, lng: number) => {
       const mapOptions = {
         center: new naver.maps.LatLng(lat, lng),
-        logoControl: false,
-        logoControlOptions: {
-          position: naver.maps.Position.RIGHT_TOP,
-        },
-        scaleControl: false,
-        scaleControlOptions: {
-          position: naver.maps.Position.BOTTOM_LEFT,
-        },
-        mapDataControl: false,
-        mapDataControlOptions: {
-          position: naver.maps.Position.BOTTOM_LEFT,
-        },
-
-        // zoom,
+        MapTypeId: naver.maps.MapTypeId.SATELLITE,
       };
 
-      setMap(new naver.maps.Map(mapId, mapOptions));
+      const map = new naver.maps.Map(mapId, mapOptions);
+
+      setMap(map);
+      map.setMapTypeId(naver.maps.MapTypeId.SATELLITE);
       setIsLoading(false);
     },
     [mapId]
