@@ -63,6 +63,11 @@ const Page = () => {
     setError("");
   };
 
+  const handleMapTypeChange = (mapType: naver.maps.MapTypeId) => {
+    if (!map) return;
+    map.setMapTypeId(mapType);
+  };
+
   return (
     <div className="h-screen flex">
       <div className="w-80 bg-white border-r border-gray-200 flex flex-col">
@@ -103,6 +108,24 @@ const Page = () => {
             >
               지우기
             </button>
+          </div>
+          
+          <div className="mt-4">
+            <h3 className="text-sm font-medium text-gray-700 mb-2">지도 타입</h3>
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                onClick={() => handleMapTypeChange(naver.maps.MapTypeId.NORMAL)}
+                className="bg-green-500 text-white px-3 py-2 rounded-md hover:bg-green-600 transition-colors text-sm"
+              >
+                일반 지도
+              </button>
+              <button
+                onClick={() => handleMapTypeChange(naver.maps.MapTypeId.SATELLITE)}
+                className="bg-purple-500 text-white px-3 py-2 rounded-md hover:bg-purple-600 transition-colors text-sm"
+              >
+                위성 지도
+              </button>
+            </div>
           </div>
           
           {path.length > 0 && (
